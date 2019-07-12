@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import "./main.css"
 import loader from './images/loader.gif'
 import axios from 'axios'
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 
 const url = 'http://localhost:8000/api/create'
 
@@ -98,6 +100,10 @@ class Main extends Component {
                     ) : (
                         <React.Fragment>
                             <strong>Success!</strong> Here is the short Link <a href={results.shortUrl} target="_blank" className="alert-link text-primary">{results.shortUrl}</a>
+                            <CopyToClipboard text={results.shortUrl }
+                            onCopy={() => this.setState({copied: true})}>
+                            <button type="button" className="btn btn-sm table-dark ml-3">copy </button>
+                            </CopyToClipboard>
                         </React.Fragment>
                     )}
                     </div>
